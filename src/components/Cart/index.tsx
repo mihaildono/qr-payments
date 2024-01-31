@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import classNames from "classnames";
 
-import { Items, CardForm } from "./components";
+import { Items, CardForm, Receipt } from "./components";
 import { mockItems } from "./mocks";
 import { CartItem } from "./types";
+import styles from "./styles.module.scss";
 
 export const Cart = () => {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -21,11 +23,12 @@ export const Cart = () => {
   }, []);
 
   return (
-    <div>
+    <div className={classNames(styles.wrapper)}>
       {step === 0 && (
         <Items items={items} toggleItem={toggleItem} setStep={setStep} />
       )}
-      {step === 1 && <CardForm />}
+      {step === 1 && <CardForm setStep={setStep} />}
+      {step === 2 && <Receipt />}
     </div>
   );
 };

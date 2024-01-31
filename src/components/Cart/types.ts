@@ -9,6 +9,9 @@ export interface ItemsProps {
   setStep: (step: number) => void;
 }
 
+export interface CardProps {
+  setStep: (step: number) => void;
+}
 export interface CartItem {
   id: number;
   name: string;

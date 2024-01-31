@@ -7,6 +7,10 @@ export const Items = ({ items, toggleItem, setStep }: ItemsProps) => {
     0
   );
 
+  const hasSelected = items.some((item) => item.selected);
+  const hasPayed = items.some((item) => item.payed);
+  const partialSelectedMessage = hasPayed ? "Pay" : "Pay rest of the bill";
+
   return (
     <>
       <ul>
@@ -15,14 +19,8 @@ export const Items = ({ items, toggleItem, setStep }: ItemsProps) => {
         ))}
       </ul>
       {Boolean(paymentSum) && <span>{`${paymentSum}€`}</span>}
-      {items.some((item) => item.selected) ? (
-        <button onClick={() => setStep(1)}>Pay separately</button>
-      ) : (
-        <button onClick={() => setStep(1)}>Pay</button>
-      )}
-      {items.some((item) => item.payed) && (
-        <button onClick={() => setStep(1)}>Pay rest of the bill</button>
-      )}
+      {hasSelected && <button onClick={() => setStep(1)}>Pay Seprately</button>}
+      <button onClick={() => setStep(1)}>{partialSelectedMessage}</button>
     </>
   );
 };

@@ -1,3 +1,12 @@
 .payed {
     text-decoration: line-through;
 }
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    gap: 8px;
+}
