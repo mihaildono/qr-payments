@@ -12,7 +12,7 @@ export const Item = ({ item, toggleItem }: ItemProps) => (
     >
       <span>{item.name}</span>
       <span>{item.price}</span>
-      {!item.payed && <input type="checkbox" defaultChecked={item.selected} />}
+      {!item.payed && <input type="checkbox" checked={item.selected} />}
     </button>
   </li>
 );
