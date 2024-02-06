@@ -1,5 +1,6 @@
 import { ItemsProps } from "../types";
 import { Item } from "./Item";
+import css from "../styles.module.scss";
 
 export const Items = ({ items, toggleItem, setStep }: ItemsProps) => {
   const selectedPaymentSum = items.reduce(
@@ -10,19 +11,22 @@ export const Items = ({ items, toggleItem, setStep }: ItemsProps) => {
   const totalPaymentSum = items.reduce((acc, item) => acc + item.price, 0);
 
   const hasSelected = items.some((item) => item.selected);
-  const hasPayed = items.some((item) => item.payed);
-  const partialSelectedMessage = hasPayed ? "Pay" : "Pay rest of the bill";
+  const paymentMsg = hasSelected ? "Pay separately" : "Pay";
 
   return (
-    <>
-      <ul>
-        {items.map((item) => (
-          <Item key={item.id} item={item} toggleItem={toggleItem} />
-        ))}
-      </ul>
-      <span>{`${selectedPaymentSum || totalPaymentSum}€`}</span>
-      {hasSelected && <button onClick={() => setStep(1)}>Pay Seprately</button>}
-      <button onClick={() => setStep(1)}>{partialSelectedMessage}</button>
-    </>
+    <div className={css.itemsWrapper}>
+      {items.map((item) => (
+        <Item key={item.id} item={item} toggleItem={toggleItem} />
+      ))}
+      <div className={css.total}>
+        <span>Total</span>
+        <span className={css.sum}>{`${
+          selectedPaymentSum || totalPaymentSum
+        }€`}</span>
+      </div>
+      <button className={css.payment} onClick={() => setStep(1)}>
+        {paymentMsg}
+      </button>
+    </div>
   );
 };

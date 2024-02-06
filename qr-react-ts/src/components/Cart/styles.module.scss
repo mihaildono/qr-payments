@@ -3,10 +3,52 @@
 }
 
 .wrapper {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 8px;
     gap: 8px;
+}
+
+.item {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.checkbox {
+    margin-left: auto;
+    accent-color: black;
+}
+
+.itemsWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px
+}
+
+.payment {
+    height: 32px;
+    width: 100%;
+    margin-top: auto;
+    background: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.total {
+    width: 100%;
+    display: flex;
+}
+
+.sum {
+    margin-left: auto;
 }
