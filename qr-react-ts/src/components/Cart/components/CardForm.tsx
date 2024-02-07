@@ -3,6 +3,7 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
+import css from "../styles.module.scss";
 
 export const CardForm = () => {
   const stripe = useStripe();
@@ -36,10 +37,13 @@ export const CardForm = () => {
       // site first to authorize the payment, then redirected to the `return_url`.
     }
   };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={css.wrapper} onSubmit={handleSubmit}>
       <PaymentElement />
-      <button disabled={!stripe}>Pay</button>
+      <button className={css.payment} disabled={!stripe}>
+        Pay
+      </button>
     </form>
   );
 };

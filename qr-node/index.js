@@ -9,9 +9,7 @@ app.get("/intent", async (_, res) => {
       {
         amount: 1000,
         currency: "eur",
-        automatic_payment_methods: {
-          enabled: true,
-        },
+        payment_method_types: ["card"],
       },
       {
         stripeAccount: "acct_1OgS4zAfvXmllvkH",
