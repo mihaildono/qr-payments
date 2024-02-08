@@ -22,6 +22,10 @@
     border-radius: 5px;
 }
 
+.item:disabled {
+    color: grey;
+}
+
 .checkbox {
     margin-left: auto;
     accent-color: black;
