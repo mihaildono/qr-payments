@@ -18,7 +18,7 @@ const stripePromise = loadStripe(
 export const Cart = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [items, setItems] = useState<CartItem[]>([]);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   const appearance: Appearance = {
     theme: "flat",
