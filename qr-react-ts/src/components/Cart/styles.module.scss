@@ -45,6 +45,10 @@
     border-radius: 5px;
 }
 
+.payment:disabled {
+    background: grey;
+}
+
 .total {
     width: 100%;
     display: flex;

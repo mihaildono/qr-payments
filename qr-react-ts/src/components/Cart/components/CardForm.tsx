@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   useStripe,
   useElements,
@@ -6,10 +7,12 @@ import {
 import css from "../styles.module.scss";
 
 export const CardForm = () => {
+  const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
+    setLoading(true);
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
@@ -17,6 +20,7 @@ export const CardForm = () => {
     if (!stripe || !elements) {
       // Stripe.js hasn't yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
+      setLoading(false);
       return;
     }
 
@@ -27,7 +31,7 @@ export const CardForm = () => {
         return_url: `${window.location.origin}/success`,
       },
     });
-
+    setLoading(false);
     if (result.error) {
       // Show error to your customer (for example, payment details incomplete)
       console.log(result.error.message);
@@ -41,8 +45,8 @@ export const CardForm = () => {
   return (
     <form className={css.wrapper} onSubmit={handleSubmit}>
       <PaymentElement />
-      <button className={css.payment} disabled={!stripe}>
-        Pay
+      <button className={css.payment} disabled={!stripe || loading}>
+        {loading ? "Processing" : "Pay"}
       </button>
     </form>
   );
