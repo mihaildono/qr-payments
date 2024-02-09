@@ -5,7 +5,7 @@ const stripe = require("stripe")(
 );
 
 const corsOptions = {
-  origin: "*",
+  origin: "qr-payments-two.vercel.app",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -13,7 +13,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "qr-payments-two.vercel.app");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
