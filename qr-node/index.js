@@ -25,4 +25,16 @@ app.get("/intent", async (req, res) => {
   }
 });
 
+app.get("/receipt", async (req, res) => {
+  try {
+    const paymentIntent = await stripe.paymentIntents.retrieve(
+      req.query["payment_intent"]
+    );
+
+    res.send({ amount: paymentIntent.amount });
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+});
+
 app.listen(4000, () => console.log("Running on port 4000"));

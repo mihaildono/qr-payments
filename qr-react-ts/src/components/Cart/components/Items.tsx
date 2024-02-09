@@ -1,15 +1,9 @@
 import { ItemsProps } from "../types";
 import { Item } from "./Item";
 import css from "../styles.module.scss";
+import { paymentSum } from "../utils";
 
-export const Items = ({ items, toggleItem, setStep }: ItemsProps) => {
-  const selectedPaymentSum = items.reduce(
-    (acc, item) => acc + (item.selected ? Number(item.price) : 0),
-    0
-  );
-
-  const totalPaymentSum = items.reduce((acc, item) => acc + item.price, 0);
-
+export const Items = ({ items, toggleItem, handlePay }: ItemsProps) => {
   const hasSelected = items.some((item) => item.selected);
   const paymentMsg = hasSelected ? "Pay separately" : "Pay";
 
@@ -20,11 +14,9 @@ export const Items = ({ items, toggleItem, setStep }: ItemsProps) => {
       ))}
       <div className={css.total}>
         <span>Total</span>
-        <span className={css.sum}>{`${
-          selectedPaymentSum || totalPaymentSum
-        }€`}</span>
+        <span className={css.sum}>{`${paymentSum(items)}€`}</span>
       </div>
-      <button className={css.payment} onClick={() => setStep(1)}>
+      <button className={css.payment} onClick={handlePay}>
         {paymentMsg}
       </button>
     </div>

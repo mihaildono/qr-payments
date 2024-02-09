@@ -7,6 +7,7 @@ import { Items, CardForm, Receipt } from "./components";
 import { mockItems } from "./mocks";
 import { CartItem } from "./types";
 import styles from "./styles.module.scss";
+import { paymentSum } from "./utils";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -24,12 +25,16 @@ export const Cart = () => {
     theme: "flat",
   };
 
-  useEffect(() => {
-    fetch("https://qr-payments-f71c.vercel.app/intent").then(async (res) => {
-      const intent = await res.json();
-      setClientSecret(intent.clientSecret);
-    });
-  }, []);
+  const handlePay = () => {
+    const amount = paymentSum(items) * 100; // amount is in cents; minimum 50
+    fetch(`https://qr-payments-f71c.vercel.app/intent?amount=${amount}`).then(
+      async (res) => {
+        const intent = await res.json();
+        setClientSecret(intent.clientSecret);
+      }
+    );
+    setStep(1);
+  };
 
   const toggleItem = (id: number) => {
     setItems(
@@ -46,7 +51,7 @@ export const Cart = () => {
   return (
     <div className={classNames(styles.wrapper)}>
       {step === 0 && (
-        <Items items={items} toggleItem={toggleItem} setStep={setStep} />
+        <Items items={items} toggleItem={toggleItem} handlePay={handlePay} />
       )}
       {step === 1 && clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret, appearance }}>

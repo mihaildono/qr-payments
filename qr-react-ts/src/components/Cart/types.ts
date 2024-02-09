@@ -6,7 +6,7 @@ export interface ItemProps {
 export interface ItemsProps {
   items: CartItem[];
   toggleItem: (id: number) => void;
-  setStep: (step: number) => void;
+  handlePay: () => void;
 }
 
 export interface CartItem {
