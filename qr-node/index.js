@@ -12,6 +12,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.get("/", (_, res) => res.send("foo"));
+
 app.get("/intent", async (_, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create(
