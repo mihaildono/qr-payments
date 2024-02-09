@@ -6,11 +6,11 @@ const stripe = require("stripe")(
 
 app.use(cors());
 
-app.get("/intent", async (_, res) => {
+app.get("/intent", async (req, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create(
       {
-        amount: 1000,
+        amount: req.query.amount,
         currency: "eur",
         payment_method_types: ["card"],
       },
