@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import classNames from "classnames";
 import { Elements } from "@stripe/react-stripe-js";
 import { Appearance, loadStripe } from "@stripe/stripe-js";
+import { useCookies } from "react-cookie";
 
 import { Items, CardForm, Receipt } from "./components";
 import { mockItems } from "./mocks";
@@ -17,6 +18,7 @@ const stripePromise = loadStripe(
 );
 
 export const Cart = () => {
+  const [_, setCookie] = useCookies();
   const [clientSecret, setClientSecret] = useState("");
   const [items, setItems] = useState<CartItem[]>([]);
   const [step, setStep] = useState(0);
@@ -26,6 +28,8 @@ export const Cart = () => {
   };
 
   const handlePay = () => {
+    setCookie("items", JSON.stringify(items.filter((item) => item.selected)));
+    debugger;
     const amount = paymentSum(items) * 100; // amount is in cents; minimum 50
     fetch(`https://qr-payments-f71c.vercel.app/intent?amount=${amount}`).then(
       async (res) => {

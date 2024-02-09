@@ -67,6 +67,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    gap: 8px;
 }
 
 .receipt {
@@ -78,4 +79,12 @@
 .success {
     height: 32px;
     width: 32px;
+}
+
+.receiptItems {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    justify-content: left;
 }
