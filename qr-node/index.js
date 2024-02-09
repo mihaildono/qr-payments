@@ -1,7 +1,10 @@
+var cors = require("cors");
 const app = require("express")();
 const stripe = require("stripe")(
   "sk_test_51OgS4zAfvXmllvkHInafpGyKGez1wgKOB9AHCNBGSQbq7YMPvxVpHVtZplnuoXC2dC7kGiaiVqGmjqZTM5mRzZAs004Srsk5oh"
 );
+
+app.use(cors());
 
 app.get("/intent", async (_, res) => {
   try {
