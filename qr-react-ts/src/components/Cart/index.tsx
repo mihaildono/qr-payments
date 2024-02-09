@@ -25,7 +25,9 @@ export const Cart = () => {
   };
 
   useEffect(() => {
-    fetch("/intent").then(async (res) => {
+    fetch(
+      "https://qr-payments-f71c-a2lhq2cmi-mihails-projects-f6fd6901.vercel.app/intent"
+    ).then(async (res) => {
       const intent = await res.json();
       setClientSecret(intent.clientSecret);
     });
