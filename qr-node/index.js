@@ -12,6 +12,15 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.get("/intent", async (_, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create(
