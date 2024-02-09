@@ -4,15 +4,7 @@ const stripe = require("stripe")(
   "sk_test_51OgS4zAfvXmllvkHInafpGyKGez1wgKOB9AHCNBGSQbq7YMPvxVpHVtZplnuoXC2dC7kGiaiVqGmjqZTM5mRzZAs004Srsk5oh"
 );
 
-const corsOptions = {
-  origin: true,
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
-app.get("/", (_, res) => res.send("foo"));
+app.use(cors());
 
 app.get("/intent", async (_, res) => {
   try {
