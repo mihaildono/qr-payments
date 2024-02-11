@@ -1,4 +1,5 @@
-import type { CartItem } from "./types";
+import type { CartItem, Tip } from "./types";
+
 export const mockItems: CartItem[] = [
   {
     id: 1,
@@ -29,4 +30,10 @@ export const mockItems: CartItem[] = [
     payed: false,
     selected: false,
   },
+];
+
+export const mockTips: Tip[] = [
+  { value: 0.05, selected: false },
+  { value: 0.1, selected: false },
+  { value: 0.15, selected: false },
 ];

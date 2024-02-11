@@ -88,3 +88,27 @@
     width: 100%;
     justify-content: left;
 }
+
+.tipWrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: left;
+}
+
+.tipButtons {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.tip {
+    @extend .item;
+    width: 56px;
+    justify-content: center;
+}
+
+.tipSelected {
+    background: black;
+    color: white;
+}

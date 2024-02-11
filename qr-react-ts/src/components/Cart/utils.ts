@@ -1,6 +1,6 @@
-import type { CartItem } from "./types";
+import type { CartItem, Tip } from "./types";
 
-export const paymentSum = (items: CartItem[]) => {
+export const paymentSum = (items: CartItem[], tips: Tip[]) => {
   const selectedSum = items.reduce(
     (acc, item) => acc + (item.selected ? Number(item.price) : 0),
     0
@@ -8,5 +8,10 @@ export const paymentSum = (items: CartItem[]) => {
 
   const totalPaymentSum = items.reduce((acc, item) => acc + item.price, 0);
 
-  return selectedSum || totalPaymentSum;
+  const sum = selectedSum || totalPaymentSum;
+
+  const tipPercentage = tips.filter((tip) => tip.selected)[0]?.value || 0;
+  const tipAmount = tipPercentage * sum;
+
+  return Number((tipAmount + sum).toFixed(2));
 };

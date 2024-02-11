@@ -1,10 +1,10 @@
 import css from "../styles.module.scss";
-import type { CartItem } from "../types";
+import type { TotalProps } from "../types";
 import { paymentSum } from "../utils";
 
-export const Total = (props: { items: CartItem[] }) => (
+export const Total = ({ items, tips }: TotalProps) => (
   <div className={css.total}>
     <span>Total</span>
-    <span className={css.sum}>{`${paymentSum(props.items)}€`}</span>
+    <span className={css.sum}>{`${paymentSum(items, tips)}€`}</span>
   </div>
 );
