@@ -8,6 +8,11 @@ import type { CartItem, Tip } from "../types";
 export const Receipt = () => {
   const [cookies] = useCookies();
 
+  const selecteditems =
+    cookies.items?.filter((item: CartItem) => item.selected) || [];
+
+  const items = selecteditems.length ? selecteditems : cookies.items;
+
   const tipAmount = cookies.tips?.filter((tip: Tip) => tip.selected)[0]?.value;
 
   return (
@@ -17,7 +22,7 @@ export const Receipt = () => {
         <h1>Payment success!</h1>
       </div>
       <div className={css.receiptItems}>
-        {cookies.items?.map((item: CartItem) => (
+        {items?.map((item: CartItem) => (
           <span key={item.id}>{`${item.name} ${item.price}`}</span>
         ))}
         {tipAmount && <span>Tip: {tipAmount * 100}%</span>}
