@@ -89,7 +89,7 @@
     justify-content: left;
 }
 
-.tipWrapper {
+.itemWrapper {
     display: flex;
     width: 100%;
     align-items: center;
@@ -108,7 +108,11 @@
     justify-content: center;
 }
 
-.tipSelected {
+.itemSelected {
     background: black;
     color: white;
+}
+
+.price {
+    margin-left: auto;
 }

@@ -23,9 +23,17 @@ export const Receipt = () => {
       </div>
       <div className={css.receiptItems}>
         {items?.map((item: CartItem) => (
-          <span key={item.id}>{`${item.name} ${item.price}`}</span>
+          <div key={item.id} className={css.itemWrapper}>
+            <span>{item.name}</span>
+            <span className={css.price}>{item.price}</span>
+          </div>
         ))}
-        {tipAmount && <span>Tip: {tipAmount * 100}%</span>}
+        {tipAmount && (
+          <div className={css.itemWrapper}>
+            <span>Tip</span>
+            <span className={css.price}>{tipAmount * 100}%</span>
+          </div>
+        )}
       </div>
       <Total items={cookies.items || []} tips={cookies.tips || []} />
     </div>

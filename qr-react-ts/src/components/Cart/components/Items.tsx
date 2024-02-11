@@ -18,14 +18,14 @@ export const Items = ({
       {items.map((item) => (
         <Item key={item.id} item={item} toggleItem={toggleItem} />
       ))}
-      <div className={css.tipWrapper}>
+      <div className={css.itemWrapper}>
         <span>Leave a tip?</span>
         <div className={css.tipButtons}>
           {tips.map((tip) => (
             <button
               key={tip.value}
               className={classNames(css.tip, {
-                [css.tipSelected]: tip.selected,
+                [css.itemSelected]: tip.selected,
               })}
               onClick={() => toggleTip(tip)}
             >

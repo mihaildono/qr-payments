@@ -6,17 +6,13 @@ import type { ItemProps } from "../types";
 export const Item = ({ item, toggleItem }: ItemProps) => (
   <button
     disabled={item.payed}
-    className={classNames(css.item, { [css.payed]: item.payed })}
+    className={classNames(css.item, {
+      [css.payed]: item.payed,
+      [css.itemSelected]: item.selected,
+    })}
     onClick={() => toggleItem(item.id)}
   >
-    <span>{`${item.name} ${item.price}`}</span>
-    {!item.payed && (
-      <input
-        className={css.checkbox}
-        type="checkbox"
-        onChange={() => {}}
-        checked={item.selected}
-      />
-    )}
+    <span>{item.name}</span>
+    <span className={css.price}>{item.price}</span>
   </button>
 );
