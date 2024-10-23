@@ -6,6 +6,10 @@ const stripe = require("stripe")(
 
 app.use(cors());
 
+app.get("/test", async (req, res) => {
+  res.status(400).send("ok");
+});
+
 app.get("/intent", async (req, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create(
