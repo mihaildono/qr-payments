@@ -7,7 +7,11 @@ const stripe = require("stripe")(
 app.use(cors());
 
 app.get("/test", async (req, res) => {
-  res.status(400).send("ok");
+  res.status(400).send("bad");
+});
+
+app.get("/health", async (req, res) => {
+  res.status(200).send("ok");
 });
 
 app.get("/intent", async (req, res) => {
@@ -41,4 +45,4 @@ app.get("/receipt", async (req, res) => {
   }
 });
 
-app.listen(4000, () => console.log("Running on port 4000"));
+app.listen(3000, () => console.log("Running on port 3000"));
